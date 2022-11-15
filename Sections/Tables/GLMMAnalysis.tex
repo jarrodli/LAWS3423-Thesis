@@ -1,18 +1,43 @@
+%TC:ignore
+% \begin{longtable}{lllll}
+%     \caption{GLMM coefficients and corresponding statistical significance.}
+%     \endfirsthead
+%     \toprule
+%     \endhead
+%     \bottomrule
+%     \multicolumn{4}{l}{\PStar{\emph{p} < 0.05} \ \ \PStar{\PStar{\emph{p} < 0.01}} \ \ \PStar{\PStar{\PStar{\emph{p} < 0.001}}}}
+%     \endlastfoot
+%     \toprule
+%     {} & {\textbf{Model 1}}     & {\textbf{Model 2}}            & {\textbf{Model 3}}            & {\textbf{Model 4}}                                      \\ \midrule
+%     \textbf{Judgment Length}    & \Star{\Star{\Star{0.004}}}    & \Star{\Star{\Star{0.004}}}    & \Star{\Star{0.002}}        & \Star{\Star{\Star{0.001}}} \\
+%     \textbf{Coram Size}         &                               & 0.143                         & 0.175                      & 0.178                      \\
+%     \textbf{Lone Opinion}       &                               &                               & \Star{\Star{\Star{1.553}}} & \Star{\Star{\Star{1.770}}} \\
+%     \textbf{ALP Appointee}      &                               &                               &                            & \Star{\Star{1.971}}        \\ \midrule
+%     \textbf{Log Likelihood}     & -1584.287                     & -1570.858                     & -1278.506                  & -1298.995                  \\
+%     \textbf{AIC} & 3178.574     &  3159.717                     &  2585.012                     & 2627.991                                                \\
+% \end{longtable}
+%TC:endignore
 
-\begin{longtable}{llllll}
-    \caption{Causes explaining citation trends}
+\begin{longtable}{lrrrrrr}
+    \caption{GLMM coefficients for citations to journal articles by the High Court.}
     \endfirsthead
     \toprule
     \endhead
     \bottomrule
-    \multicolumn{4}{l}{\PStar{p < 0.05} \ \ \PStar{\PStar{p < 0.01}} \ \ \PStar{\PStar{\PStar{p < 0.001}}}}
+    \multicolumn{6}{l}{\PStar{\emph{p} < 0.001; Standard Error in parentheses.}}
     \endlastfoot
     \toprule
-    {} & {\textbf{Model 1}} & {\textbf{Model 2}} & {\textbf{Model 3}} & {\textbf{Model 4}} \\ \midrule
-    \textbf{Judgment Length} & \Star{\Star{\Star{0.004}}} & \Star{\Star{\Star{0.004}}} & \Star{\Star{0.002}} & \Star{\Star{\Star{0.001}}} \\
-    \textbf{Coram Size} & & 0.143 & 0.175 & 0.178 \\
-    \textbf{Lone Opinion} & & & \Star{\Star{\Star{1.553}}} & \Star{\Star{\Star{1.770}}} \\
-    \textbf{ALP Appointee} & & & & \Star{\Star{1.971}} \\ \midrule
-    \textbf{Log Likelihood} & -1584.287 & -1570.858 & -1278.506 & -1298.995  \\
-    \textbf{AIC} & 3178.574 & 3159.717 & 2585.012 & 2627.991  \\
+    {}                          & {\textbf{Model 1}}            & {\textbf{Model 2}}            & {\textbf{Model 3}}            & {\textbf{Model 4}}           \\ \midrule
+    \textbf{Judgment Length}    & \Star{0.003}                  & \Star{0.002}                  & \Star{0.003}                  & \Star{0.002}                 \\
+                                & (0.000)                       & (0.000)                       & (0.000)                       & (0.000)                      \\
+    \textbf{Lone Opinion}       &                               & \Star{1.445}                  &                               & \Star{1.425}                 \\
+                                &                               & (0.044)                       &                               & (0.044)                      \\
+    \textbf{Coram Size}         &                               &                               & \Star{0.164}                  & \Star{0.129}                 \\
+                                &                               &                               & (0.018)                       & (0.018)                      \\
+    \textbf{Appeal Allowed}     &                               &                               & {-0.018\hphantom{0}}          &                              \\
+                                &                               &                               & (0.033)                       &                              \\
+    \textbf{Intercept}          & \Star{-1.153}                 & \Star{-1.264}                 & \Star{-2.020}                 & \Star{-1.951}                \\ 
+                                & (0.130)                       & (0.097)                       & (0.171)                       & (0.143)                      \\ \midrule
+    \textbf{Log Likelihood}     & -6907.74                     & -6388.22                     & -6861.92                     & -6361.75                        \\
+    \textbf{AIC}                & 13823.48                     & 12786.45                     & 13735.84                     & 12735.50                        \\
 \end{longtable}

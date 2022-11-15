@@ -23,6 +23,8 @@
 \usepackage{siunitx}
 \usepackage{longtable}
 \usepackage{sepfootnotes}
+\usepackage[labelfont=bf]{caption}
+\usepackage{tocloft}
 \usepackage[hang,flushmargin]{footmisc}
 \geometry{
     a4paper,
@@ -34,6 +36,8 @@
 \usepackage{hyperref}
 
 \setlength{\headheight}{15pt}
+
+\addtolength{\cftsecnumwidth}{12pt}
 
 % enable for word export
 % \tolerance=1
@@ -51,8 +55,8 @@
     BoldItalicFont=*-BoldIt
 ]
 
-\settowidth{\thanksmarkwidth}{*}
-\setlength{\thanksmargin}{1.3em}
+\thanksmarkseries{fnsymbol}
+\setlength{\thanksmargin}{0.8em}
 \makeatletter
   \long\def\@makefntext#1{\leavevmode%
     \@thefnmark)\hspace{1em}\nobreak
@@ -96,7 +100,7 @@
 
 \title{\vspace{-25mm}\large{\textbf{\uppercase{Academic Judges:\\A Scientometric Study on the Jurisprudential Impact of Academic Work in Australia}}}}
 \date{}
-\author{\textsc{Jarrod Li}\thanks{\;\, TODO.}}
+\author{\textsc{Jarrod Li}\thanks{\;\, The author is grateful to Professor Lyria Bennett-Moses and Michael Green SC, who were both incredibly generous with their time and advice.}}
 \maketitle
 
 \input{abstract}
@@ -115,9 +119,13 @@
 \input{Sections/2_BACKGROUND}
 \input{Sections/3.1_DATA}
 \input{Sections/3.2_PROCESSES}
-\input{Sections/4_RESULTS}
-\input{Sections/5_EVALUATION}
-\input{Sections/6_CONCLUSION}
-\input{Sections/7_BIBLIOGRAPHY}
+\input{Sections/4_LIMITATIONS}
+\input{Sections/5_RESULTS}
+\input{Sections/6_EVALUATION}
+\input{Sections/7_CONCLUSION}
+%TC:ignore
+\input{Sections/8_APPENDIX}
+\input{Sections/9_BIBLIOGRAPHY}
+%TC:endignore
 
 \end{document}
