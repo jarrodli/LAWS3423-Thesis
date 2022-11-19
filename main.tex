@@ -16,8 +16,13 @@
 \usepackage{sectsty}
 \usepackage{adforn}
 \usepackage{amsmath}
+% \usepackage[theoremfont,trueslanted,largesc,p,osf]{newpxtext}
+% \usepackage{polyglossia}
+\usepackage{unicode-math}
+\usepackage{relsize}
 \usepackage{graphicx}
 \usepackage{svg}
+\usepackage{tikz}
 \usepackage{geometry}
 \usepackage{booktabs}
 \usepackage{siunitx}
@@ -26,6 +31,8 @@
 \usepackage[labelfont=bf]{caption}
 \usepackage{tocloft}
 \usepackage[hang,flushmargin]{footmisc}
+\usepackage{mathtools}
+\usepackage{upgreek}
 \geometry{
     a4paper,
     left=30mm,
@@ -34,6 +41,7 @@
     bottom=20mm
 }
 \usepackage{hyperref}
+\usetikzlibrary{arrows.meta}
 
 \setlength{\headheight}{15pt}
 
@@ -54,6 +62,8 @@
     ItalicFont=*-It,
     BoldItalicFont=*-BoldIt
 ]
+
+\setmathfont{Asana Math}
 
 \thanksmarkseries{fnsymbol}
 \setlength{\thanksmargin}{0.8em}
@@ -89,6 +99,10 @@
 
 \newcommand{\Star}[1]{#1\ensuremath{^*}\kern-\scriptspace}
 \newcommand{\PStar}[1]{\ensuremath{^*}\kern-\scriptspace #1}
+\newcommand{\Cross}[1]{#1\ensuremath{^\dagger}\kern-\scriptspace}
+\newcommand{\PCross}[1]{\ensuremath{^\dagger}\kern-\scriptspace #1}
+\newcommand{\CCross}[1]{#1\ensuremath{^\mathsection}\kern-\scriptspace}
+\newcommand{\PCCross}[1]{\ensuremath{^\mathsection}\kern-\scriptspace #1}
 \let\xn\xnote
 \include{Footnotes/footnotes-settings}
 % ----------------------------------------------------------
@@ -107,7 +121,6 @@
 \newpage
 
 \thispagestyle{plain}
-
 
 \tableofcontents
 \newpage

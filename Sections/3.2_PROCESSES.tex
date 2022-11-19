@@ -1,3 +1,4 @@
+
 \let\xn\xnote
 \subsection{Procedures}
 
@@ -23,7 +24,12 @@ For the purposes of this study, the rationale behind the \textit{h}-index will b
 \subsubsection{Causal Inference}
 Quantitative approaches raise questions concerning the underlying cause of a trend.\xn{3b-6} With the goal of providing an explanation, statistical models will be used to describe the relationship between an explanatory variable $x$ (also known as a covariate) and an outcome $y$.\xn{3b-7} Modelling these relationships allows certain conclusions to be made about the identified trends---i.e. whether the covariate and outcome are mutually correlated, or exclusive from one another.\xn{3b-7a} Such a relationship can be framed as the independence between judgments and politics, or the correlation between the prospect of bail and whether an accused has a history of violence.
 
-More concretely, this model is defined as an \textit{estimated} linear relationship, where\xn{3b-8} \[\hat{y} = \beta_0 + \sum_{i=1}^{n} \beta_ix_i,\]
+More concretely, this model is defined as an \textit{estimated} linear relationship, where\xn{3b-8} 
+
+\begin{equation*}
+\hat{y} = \beta_0 + \mathlarger{\sum}_{i=1}^{n} \ \beta_ix_i,
+\end{equation*}
+
 with parameters $\beta_1, \beta_2, ..., \beta_n$ and $\beta_0$ defining the gradient and intercept of a line `fitted' to the collected data.\xn{3b-8a} Simply, this formula adds a constant value $\beta_0$ to a sequence of independent variables $x_1, x_2, ..., x_n$ that are multiplied by a corresponding linear or \textit{estimated} parameter, resulting in: \[\hat{y} = \beta_0 + (\beta_1 \cdot x_1) + (\beta_2 \cdot x_2) + ... + (\beta_n \cdot x_n).\] From this basic model, the number of citations $y$ is readily ascertainable for any set of explanatory variables $x$, irrespective of whether data for that year actually exists.
 
 In practice, modelling this relationship is a generative task because it is impossible to produce a perfect model from a set of sampled data.\xn{3b-9} The task is generative in the sense that random variables are generated to explicitly model errors between the model and sampled values.\xn{3b-10} A random variable $X$ maps each value $\omega \in \Omega$ (where $\Omega$ is the sample space of all possible outcomes) to a value $v_i = X(\omega_i)$.\xn{3b-11} The upshot of introducing random noise is that the observed citation outcomes can be modelled as `realisations' of an \textit{expected distribution} of values. From another perspective, randomness attempts to ensure the modelled data better reflects an expected, or real world, distribution of values.
@@ -32,23 +38,73 @@ Selecting the best distribution for a random variable necessitates a review of t
 
 Although the above GLM can fit statistically independent data, it cannot accurately model data points that are correlated. In Australia, the citation practices of courts do not benefit from independence. For example, opinions frequently split into multiple separate judgments, each constituted by a subset of the coram hearing the case.\xn{3b-15} And, as this study describes trends spanning multiple years, the period during which a court sits may also introduce correlation between data points.\xn{3b-16}
 
-Linear mixed models (`LLMs') are employed to mitigate against correlative aspects of the citation dataset.\xn{3b-17} The independent variables are modelled as explained and are called `fixed' effects.\xn{3b-18} The remaining non-independent variables, known as `random' effects, are represented by a sparse matrix of values that group correlated data points together.\xn{3b-19} Applying the foregoing principles, the following GLLM is formed\xn{3b-20} \[\log(\hat{\mu}) = \beta X + u Y,\] where $x_{ij}$ is an independent variable observing effect $j$ on a data point $i$, and $y_{ij}$ is $1$ if the data point $i$ belongs to group $j$. Taken at its most basic, the above equation represents multiple linear relationships, where the matrix $Y$ groups related data points together, forming a single linear relationship per group.
+Linear mixed models (`LLMs') are employed to mitigate against correlative aspects of the citation dataset.\xn{3b-17} The independent variables are modelled as explained and are called `fixed' effects.\xn{3b-18} The remaining non-independent variables, known as `random' effects, are represented by a sparse matrix of values that group correlated data points together.\xn{3b-19} Applying the foregoing principles, the following GLLM is formed\xn{3b-20} 
+
+\begin{equation}
+\log(\hat{\mu}) = \beta X + u Y,
+\end{equation}
+
+where $x_{ij}$ is an independent variable observing effect $j$ on a data point $i$, and $y_{ij}$ is $1$ if the data point $i$ belongs to group $j$. Taken at its most basic, (1) represents multiple linear relationships, where the matrix $Y$ groups related data points together, forming a single linear relationship per group.
 
 Where statistical models are created to ascertain causative relationships, \textit{p}-values are used to determine the probability that a fitted variable is equal to or more extreme than its observed value.\xn{3b-21} This means that a low \textit{p}-value is exceedingly unlikely under the null-hypothesis---a hypothesis assuming no statistical significance in the observed results. That being so, the observed effects will be considered statistically significant, and the null hypothesis ($\mathrm{H}_0$) will be rejected, if the probability of $\mathrm{H}_0$ is less than 5\%. By convention, a \textit{p}-value less than $0.05$ is accepted as the litmus test for statistical significance.\xn{3b-22}
 
 \subsubsection{Structural Rankings}
-An issue emerging from measuring academic influence through these quantitative metrics lies in the susceptibility of citation data to unfair and unwanted distortions. For example, a 2019 study found self-citation rates in academic journals to be extremely high, negatively impacting the reliability of quantitative metrics.\xn{} This problem is not novel and was highly influential on the development of tools to prevent tampering with webpage rankings.\xn{} 
+An issue emerging from measuring academic influence through these quantitative metrics lies in the susceptibility of citation data to unfair and unwanted distortions. For example, a 2019 study found self-citation rates in academic journals to be extremely high, negatively impacting the reliability of quantitative metrics.\xn{3b-23} This problem is not novel and was highly influential on the development of tools to prevent tampering with webpage rankings.\xn{3b-24} 
 
-More broadly, both examples illustrate a core issue with current practices of measuring an author's impact by way of citations. That is, the evaluative procedure assumes the citing author to be trustworthy. Although it would be misguided to suggest that courts are a priori biased towards citing certain works, unavoidable latent bias in the selection process should be expected. For instance, judges are likely to select publications they can recall from memory, skewing the outcome towards journals that are more oft-read by courts.\xn{} Thus, it remains worthwhile to employ a more objective basis for calculating rankings instead of pure citation counts.
+More broadly, both examples illustrate a core issue with current practices of measuring an author's impact by way of citations. That is, the evaluative procedure assumes the citing author to be trustworthy. Although it would be misguided to suggest that courts are a priori biased towards citing certain works, unavoidable latent bias in the selection process should be expected. For instance, judges are likely to select publications they can recall from memory, skewing the outcome towards journals that are more oft-read by courts.\xn{3b-25} Thus, it remains worthwhile to employ a more objective basis for calculating rankings instead of pure citation counts.
 
-For the purposes of this study, a structural ranking refers to the importance of sources (citing entities) and sinks (cited entities) on the development of substantive law. For instance, in \textit{McCloy},\xn{} Gageler J (source) cites Adrienne Stone (sink).\xn{} In her article, Stone, now the source, cites Elisa Arcioni (sink).\xn{} As Arcioni is also cited by McHugh, Kirby, and Callinan JJ in \textit{Coleman},\xn{} her structural ranking should naturally be higher than the ranking given to Stone. The resulting structure reflecting the relationship between each source and sink is colloquially termed the ``citation graph''.
+For the purposes of this study, a structural ranking refers to the importance of sources (citing entities) and sinks (cited entities) on the development of substantive law. For instance, in \textit{Forge},\xn{3b-26} Kirby J (source) cites Ernst Willheim (sink).\xn{3b-27} In his article, Willheim, now the source, cites Adrienne Stone (sink).\xn{3b-28} As Stone is also cited by Edelman\xn{3b-28a} and Gordon JJ,\xn{3b-29} her structural ranking should naturally be higher than the ranking given to Willheim. The resulting structure reflecting the relationship between each source and sink is colloquially termed the ``citation graph''.
 
-The citation graph is generated through a two stage process. Initially, a directed graph is created that represents the entire citation space. Next, \textbf{TODO: finish this section off}
+\begin{figure}[!htpb]
+\centering
+\begin{tikzpicture}
+\begin{scope}[every node/.style={circle, thick, draw, minimum size=2cm}]
+    \node (A) at (-2.5,0) {Edelman};
+    \node (B) at (-2.5,5) {Gordon};
+    \node (D) at (7.5,0) {Gageler};
+    \node (E) at (7.5,5) {Stone};
+    \node (F) at (2.5,5) {Arcioni} ;
+\end{scope}
 
-% \textbf{Then build left eigenvector for matrix $M$ of the stationary probabilities throughout the graph (explain random surfer idea etc.)}
+\begin{scope}[>={Stealth[black]},
+              every node/.style={fill=white, circle},
+              every edge/.style={draw=black, very thick}]
+    \path [->] (A) edge node {Cites} (F);
+    \path [->] (B) edge node {Cites} (F);
+    \path [->] (D) edge node {Cites} (E);
+    \path [->] (E) edge node {Cites} (F);
+\end{scope}
+\end{tikzpicture}
+\caption{An example citation graph.}
+\end{figure}
 
-The next section will examine the results of this methodology based on the dataset and procedures outlined above.
+Intuitively, three overriding principles dictate the rank of an author.\xn{3b-30} First, an author should only be given a high rank if they are cited by many other authors. Second, these citing authors $A_i$ should themselves be ranked highly. And third, a citing author's rank should be penalised if they cite excessively based on their number of ascertainable outgoing citations $n_i$. The inclusion of a penalty disincentivises practices that attempt to artificially generate influence, particularly where such influence is the result of collusion between multiple parties.\xn{3b-31} 
 
+In employing these properties to establish a ranking algorithm, an author $A$ is assigned a \emph{weighted} rank $r(A)$ according to the rank of all other authors citing $A$.\xn{3b-32} This can be formally described as\xn{3b-33}
 
-% ---
-% https://asistdl.onlinelibrary.wiley.com/doi/epdf/10.1002/asi.23179
+\begin{equation}
+r(A) = \mathlarger{\sum}_{\mathclap{A_i \rightarrow A}} \ \frac{r(A_i)}{n_i}.
+\end{equation}
+
+Conceptually, (2) can be expanded to represent the \emph{probability} $p$ that an academic, who randomly follows authors in footnotes cited by the High Court and first level academics (hereinafter `researcher'), arrives at any given article $A$.\xn{3b-34} This result is best represented as a matrix $M$, where $M_{ij} = p$, or
+
+\[
+M = 
+\begin{pmatrix}
+&             &                                         &                          &                                        &             & \\
+&             &  \vdots                                 &                          &   \vdots                               &             & \\
+&             &  \vdots                                 &                          &   \vdots                               &             & \\
+& . \ . \ .   &  0 \ \ 0 \ \ 0 \ \ \frac{1}{n_i} \ \ 0 \ \ 0 \ \ 0 & . \ . \ . \  . \ . \ .   & 0 \ \ 0 \ \ 0 \ \ \frac{1}{n_i} \ \ 0 \ \ 0 \ \ 0 & . \ . \ .   & \\
+&             &  \vdots                                 &                          &   \vdots                               &             & \\
+&             &  \vdots                                 &                          &   \vdots                               &             & \\
+&             &                                         &                          &                                        &             & \\
+\end{pmatrix} + \mathlarger{\sum}_{\mathclap{A_i \rightarrow A}} \ r(A_i)
+\]
+
+where $M_{ij}$ is equal to $\frac{1}{n_i}$ if there exists a citation from $P_i$ to $P_j$.\xn{3b-35} But this solution does not consider two important constraints. First, that the researcher might reach a dangling author with no outgoing citations.\xn{3b-36} And second, that the researcher becomes trapped in an inescapable subgraph only containing a subset of authors that continually reference each other (`article trap').\xn{3b-37}
+
+The solution to both issues relies upon the concept of random teleportation.\xn{3b-38} If a researcher encounters a dangling author, they teleport to another page uniformly at random.\xn{3b-39} However, this can be further generalised to facilitate the early exit from article traps as well. Accordingly, on every occasion a researcher follows an outgoing link, they may randomly teleport to another author in the graph with a probability of $1-\upalpha$.\xn{3b-40}
+
+To determine the final rankings, $R(A)$ is computed for each author existing within the citation graph, given\xn{3b-41}
+
+\[R(A) = (1-\upalpha) + \upalpha \cdot \mathlarger{\sum}_{\mathclap{A_i \rightarrow A}} \ \frac{R(A_i)}{n_i}.\]
