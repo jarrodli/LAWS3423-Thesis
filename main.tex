@@ -16,8 +16,6 @@
 \usepackage{sectsty}
 \usepackage{adforn}
 \usepackage{amsmath}
-% \usepackage[theoremfont,trueslanted,largesc,p,osf]{newpxtext}
-% \usepackage{polyglossia}
 \usepackage{unicode-math}
 \usepackage{relsize}
 \usepackage{graphicx}
@@ -29,10 +27,11 @@
 \usepackage{longtable}
 \usepackage{sepfootnotes}
 \usepackage[labelfont=bf]{caption}
-\usepackage{tocloft}
 \usepackage[hang,flushmargin]{footmisc}
 \usepackage{mathtools}
 \usepackage{upgreek}
+\usepackage{setspace}
+\usepackage{tocloft}
 \geometry{
     a4paper,
     left=30mm,
@@ -64,15 +63,6 @@
 ]
 
 \setmathfont{Asana Math}
-
-\thanksmarkseries{fnsymbol}
-\setlength{\thanksmargin}{0.8em}
-\makeatletter
-  \long\def\@makefntext#1{\leavevmode%
-    \@thefnmark)\hspace{1em}\nobreak
-    \relax#1%
-  }
-\makeatother
 
 % Header and footer.
 \fancyhead[L]{\nouppercase\leftmark}
@@ -111,10 +101,14 @@
 %TC:ignore
 \input{Footnotes/footnotes}
 \thispagestyle{plain}
+\renewcommand\footnotemark{}
+\setlength\thanksmarkwidth{0.3em}
+\setlength\thanksmargin{0.8em}
 
 \title{\vspace{-25mm}\large{\textbf{\uppercase{Academic Judges:\\A Scientometric Study on the Jurisprudential Impact of Academic Work in Australia}}}}
 \date{}
-\author{\textsc{Jarrod Li}\thanks{\;\, The author is grateful to Professor Lyria Bennett-Moses and Michael Green SC, who were both incredibly generous with their time and advice.}}
+\author{\textsc{Jarrod Li}$^*$}
+\thanks{$^*$\ \ The author is grateful to Professor Lyria Bennett Moses and Michael Green SC, who were both incredibly generous with their time and advice. All views expressed and errors made are mine alone.}
 \maketitle
 
 \input{abstract}
